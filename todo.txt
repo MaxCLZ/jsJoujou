@@ -1,0 +1,28 @@
+Step 1: installer VS Code & extension live share
+Step 2: Définir un environnement et définir des constantes de proba fixes
+    Tous les humains sont des etres vivants
+    Tous les zombies sont des etres vivants
+Step 3: Si 1 jour = 1 itération, trouver au bout de combien de temps tous les humains meurent
+
+Step 4: Faire plusieurs tests et voir ce qu'il se passe après 100 jours en changeant les variables.
+Step 5: Rajouter des spécifités d'humain:
+    Un humain peut etre: Enfant, Adulte, ou Senior (on change les chances de survivre à un zombie)
+Step 6: Découper en plusieurs fichiers (séparer les class du reste)
+Step 7: rajouter npm
+Step 8: Changer le js en typescript
+
+EtreVivant:
+    Nom
+    Age
+
+Humain:
+    proba de croiser un Zombie
+    proba de survivre à un zombie
+
+Zombie:
+    Nombre de jours avant de mourir définitivement
+    (Proba de mourir face à un affrontement avec un humain)
+
+
+
+
