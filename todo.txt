@@ -9,7 +9,16 @@ Step 5: Rajouter des spécifités d'humain:
     Un humain peut etre: Enfant, Adulte, ou Senior (on change les chances de survivre à un zombie)
 Step 6: Découper en plusieurs fichiers (séparer les class du reste)
 Step 7: rajouter npm
-Step 8: Changer le js en typescript
+Step 8: versionner avec git + mettre en ligne github
+
+HOMEWORK:
+Step 9: Changer le js en typescript (homework)
+// tuto nodeJS: ce qui nous intéresse sont surtout les steps 5 et 6
+// https://www.youtube.com/watch?v=0PA69L88HeI&list=PLjwdMgw5TTLV7VsXd9NOeq39soYXORezN
+Step 10: Créer un serveur nodejs et vérifier qu'il marche (serveur nodejs & express package)
+
+
+Step 11: Créer une page html qui s'affiche avec la route home ou index, puis rajouter un bouton qui va lancer la boucle de création des humains etc et qui va afficher tout le détail
 
 EtreVivant:
     Nom
