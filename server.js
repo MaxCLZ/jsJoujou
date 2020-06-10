@@ -1,66 +1,38 @@
-/*const EventEmitter = require('events')
+let express = require('express')
+let app =express()
+let bodyParser= require('body-parser')
+let session = require('express-session')
 
-const myEmitter = new EventEmitter()
-
-myEmitter.once('saute', function(a,b){
-    console.log(`J'ai sauté ${a} ${b}`)
-})
-
-myEmitter.emit('saute',10,20)
-myEmitter.emit('saute')
-*/
-
-let http = require('http')
-let fs = require('fs')
-let url = require('url')
-const EventEmitter = require('events');
-
-let App ={
-    start : function(port){
-        let emitter = new EventEmitter()
-        let server = http.createServer((request, response)=> {
-            response.writeHead(200, {
-                'Content-type' : `text/html; charset=utf-8`
-            })
-            if(request.url==`/`){
-                emitter.emit('root', response)
-            }
-            response.end()
-        }).listen(port)
-        return emitter
-    }
-}
-
-let app = App.start(80)
-app.on('root', function(response) {
-    response.write(`Je suis à la racine`)
-
-})
+//Moteur de template
+app.set('view engine', 'ejs')
 
 
+//middleware
+app.use('/assets',express.static('public'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(session({
+    secret: 'secretkey',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }))
 
-/*
 
-let server = http.createServer() 
-
-server.on('request',  (request,response) => {
-    response.writeHead(200)  
-    let query = url.parse(request.url,true).query
-    let name = query.name  === undefined ? `anonyme`: query.name
-    fs.readFile('index.html', 'utf8' ,(err,data) => {
-        if(err) {
-            response.writeHead(404)
-            response.end(`Ce fichier n'existe pas`)
-        } else{
-
-            response.writeHead(200, {
-                'Content-type' : `text/html; charset=utf-8`
-            })
-            data = data.replace(`{{ name }}`, name)
-            response.end(data)
+app.get('/', (request, response) => {
+        if(request.session.error){
+            response.locals.error =request.session.error
+            request.session.error=undefined
         }
-    })
-
+        response.render('pages/index')
 })
-server.listen(80)
-*/
+
+
+//routes
+app.post('/',(request,response) => {
+    if(request.body.message === undefined || request.body.message === ""){
+        request.session.error = `Il y a une erreur`
+        response.redirect('/')
+    }
+})
+app.listen(8000)
